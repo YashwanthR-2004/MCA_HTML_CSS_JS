@@ -93,3 +93,19 @@ button:hover{
     color: black;
     font-weight: 900;
 }
+table,th,td{
+    border: 1px solid black;
+}
+table{
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+}
+th,td{
+    text-align:center;
+    padding: 10px;
+}
+th{
+    background-color:gray;
+    color:white;
+}
