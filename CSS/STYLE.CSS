@@ -1,0 +1,26 @@
+h1{
+    color: green;
+    font-family: cursive;
+}
+nav{
+    background-color: black;
+    text-align: center;
+}
+nav a{
+    color: yellow;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 18px;
+}
+.container{
+    background-color: blue;
+}
+.cont1{
+    background-color: red;
+}
+.cont2{
+    background-color: green;
+}
+.cont3{
+    background-color: coral;
+}
