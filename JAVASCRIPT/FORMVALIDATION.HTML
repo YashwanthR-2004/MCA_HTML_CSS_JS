@@ -20,12 +20,12 @@
                 box-shadow: 0 0 10px rgb(213, 54, 54);
              }
              body{
-                background-color:rgb(65, 121, 105);
+                background-color:rgb(93, 128, 118);
              }
         </style>
         <body>
             <h1>Registration Form</h1>
-            <form class="form-box" onsubmit="validate()">
+            <form class="form-box" onsubmit="return validate()">
                 <label>Name</label>
                 <input type="text" id="name">
                 <label>Email</label>
@@ -39,9 +39,14 @@
                     let name = document.getElementById("name").value;
                     let email = document.getElementById("email").value;
                     let password = document.getElementById("password").value;
+                    let pattern = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[@#$%&!])(?=.*\d).{8,}$/
 
                     if(name == "" || email == "" || password == ""){
                         alert("All Fields Required");
+                        return false;
+                    }
+                    if(!pattern.test(password)){
+                        alert("password must contain 1 capital letter, 1 small letter,1 special chaaracter, 1 digit and minimum 8 length");
                         return false;
                     }
                     alert("Form Submitted Successfully");
