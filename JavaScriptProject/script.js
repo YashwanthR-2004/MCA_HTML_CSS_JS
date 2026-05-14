@@ -94,3 +94,79 @@ if (LogoutButton) {
     });
 
 }
+
+//Dynamic NavBar Logic
+
+let signupLink = document.getElementById("signuplink");
+let loginLink = document.getElementById("loginlink");
+let logoutBtn = document.getElementById("logoutBtn");
+
+// checking if the login is true or false!
+
+let loginStatus = localStorage.getItem("isLoggedIn");
+
+if(loginStatus == "true"){
+    if(signupLink){
+        signupLink.style.display = "none";
+    }
+    if(loginLink){
+        loginLink.style.display = "none";
+    }
+}else{
+    if(logoutBtn){
+        logoutBtn.style.display = "none";
+    }
+}
+
+// Dynamically adding task in task.html
+let addButton = document.getElementById("addTaskBtn");
+
+if(addButton) {
+    showTasks();
+    addButton.addEventListener("click", function(){
+        let task = document.getElementById("taskInput").value;
+        if (task == ""){
+            alert("Enter the task first!..");
+            return;
+        };
+        
+        // find "tasks" key in local storage if not found create empty array
+        
+        let taskArray = JSON.parse(localStorage.getItem("task")) || [];
+        taskArray.push(task)
+        localStorage.setItem("task",JSON.stringify(taskArray));
+        task.value="";
+        showTasks();
+    });
+}
+
+function showTasks(){
+    let taskList = document.getElementById("taskList");
+    if(!taskList){
+        return ;
+    }
+
+    taskList.innerHTML = "";
+    let taskArray = JSON.parse(localStorage.getItem("task")) || [];
+
+    for(let i=0; i<taskArray.length; i++){
+        taskList.innerHTML += `
+        <tr>
+            <td>${taskArray[i]}</td>
+            <td>
+                <button onClick="deleteTask(${i})">Delete</Button>
+            </td>
+        </tr>
+        `;
+    }
+}
+function deleteTask(index){
+
+    let taskArray = JSON.parse(localStorage.getItem("task")) || [];
+
+    taskArray.splice(index, 1);
+
+    localStorage.setItem("task", JSON.stringify(taskArray));
+
+    showTasks();
+}
